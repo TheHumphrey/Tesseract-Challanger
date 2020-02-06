@@ -30,6 +30,7 @@ export default function App() {
     loadDevs();
   }, []);
 
+  //a função a baixo vai alterar o valor de "mostrar" no estado do devs do dev selecionado de false para true
   function changeMostrar(key) {
     const index = devs.findIndex(elemento => key === elemento.id);
     const newDev = [...devs];

@@ -13,7 +13,7 @@ function DevItem({ dev, changeMostrar }) {
         <img src={dev.avatar_url} alt={dev.name} />
         <div className="user-info">
           <strong onClick={() => changeMostrar(dev.id)}> {dev.login}</strong>
-          {dev.mostrar && <Details dev={dev.login} />}
+          {dev.mostrar && <Details devId={dev.login} />}
         </div>
       </header>
     </li>
