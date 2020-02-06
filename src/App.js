@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
-import "./styles.css";
 
 //Importando o serviço da API
 import api from "./services/api";
+
+//Importando os estilos da aplicação
+import "./App.css";
+import "./Main.css";
+import "./styles.css";
 
 //Importando os Componentes da aplicação
 import DevItem from "./components/DevItem/index";
