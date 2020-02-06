@@ -2,24 +2,21 @@ import React, { useState, useEffect } from "react";
 
 import api from "../../services/api";
 
-function Details({ devId }) {
+function Details({ dev }) {
   const [info, setInfo] = useState([]);
 
   useEffect(() => {
-    async function infoDevs(name) {
-      const res = await api.get(`/users/${name}`);
+    async function infoDevs(dev) {
+      const res = await api.get(`/users/${dev}`);
 
       setInfo(res.data);
     }
-    infoDevs(devId);
+    infoDevs(dev);
   }, []);
 
   return (
     <div>
-      <strong>{info.name}</strong>
-      <strong>{info.public_repos}</strong>
-      <strong>{info.followers}</strong>
-      <strong>{info.updated_at}</strong>
+      <strong>{dev}</strong>
     </div>
   );
 }
