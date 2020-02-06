@@ -22,20 +22,34 @@ export default function App() {
     async function loadDevs() {
       const res = await api.get("/orgs/grupotesseract/public_members");
 
-      setDevs(res.data);
+      //a função abaixo esta adicionando a informação "mostrar" como falso em todos os objetos recebido pela API
+      const resposta = res.data.map(obj => ({ ...obj, mostrar: false }));
+
+      setDevs(resposta);
     }
     loadDevs();
   }, []);
+
+  function changeMostrar(key) {
+    const index = devs.findIndex(elemento => key === elemento.id);
+    const newDev = [...devs];
+
+    newDev[index].mostrar = !newDev[index].mostrar;
+
+    setDevs(newDev);
+  }
 
   //O bloco abaixo esta retornando o que sera apresentado para o usuário em tela
   return (
     <div className="App">
       <aside>
+        {/*O Componente abaixo esta alterando o estado do filter de acordo com o que o usuário escreve na barra de pesquisa*/}
         <SearchDev callback={setFilter} />
       </aside>
       <main>
         <div className="List">
           <ul>
+            {/* a função abaixo esta filtrando os devs de acordo com o que esta no estado "filter" */}
             {devs
               .filter(dev =>
                 dev.login
@@ -43,7 +57,7 @@ export default function App() {
                   .includes(filter.toString().toLowerCase())
               )
               .map(dev => (
-                <DevItem key={dev.id} dev={dev} />
+                <DevItem key={dev.id} dev={dev} changeMostrar={changeMostrar} />
               ))}
           </ul>
         </div>
