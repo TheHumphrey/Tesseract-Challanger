@@ -4,6 +4,9 @@ import "./styles.css";
 //Importando o serviço da API
 import api from "./services/api";
 
+//Importando os Componentes da aplicação
+import DevItem from "./components/DevItem/index";
+
 export default function App() {
   //Estados da aplicação
   const [devs, setDevs] = useState([]);
@@ -18,5 +21,19 @@ export default function App() {
     loadDevs();
   }, []);
 
-  return <div className="App" />;
+  //O bloco abaixo esta retornando o que sera apresentado para o usuário em tela
+  return (
+    <div className="App">
+      <aside />
+      <main>
+        <div className="List">
+          <ul>
+            {devs.map(dev => (
+              <DevItem key={dev.id} dev={dev} />
+            ))}
+          </ul>
+        </div>
+      </main>
+    </div>
+  );
 }
